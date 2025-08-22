@@ -1,0 +1,103 @@
+html, body, div, h1, h2, h3, h4, h5, h6, p,
+table, tbody, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    border-spacing: 0px;
+}
+
+th {
+    font-weight: normal;
+}
+
+body {
+    min-width: 1000px;
+    padding: 30px;
+    background-color: #f0f0f0;
+}
+
+/* ---------------
+TOP画面
+--------------- */
+/* ===== header-contents ===== */
+.header-contents {
+    margin-bottom: 15px;
+    padding: 30px;
+    background-color: #fff;
+}
+
+/* --- タイトル --- */
+.header-contents h1 {
+    margin-bottom: 25px;
+}
+
+/* --- 本日の日付 --- */
+.header-contents .today-date {
+    margin-bottom: 20px;
+}
+
+/* --- タスク追加ボタン --- */
+.header-contents .btn-newtask {
+    margin-bottom: 20px;
+}
+
+/* --- 絞り込み機能 --- */
+.header-contents .filter-wrap form {
+    display: flex;
+}
+
+.header-contents .filter-wrap .filter-limit {
+    margin-right: 25px;
+}
+
+.header-contents .filter-wrap .filter-limit span {
+    margin: 0 10px;
+}
+
+.header-contents .filter-wrap .filter-status {
+    margin-right: 25px;
+}
+
+.header-contents .filter-wrap .filter-content {
+    margin-right: 25px;
+}
+
+/* ===== main-contents ===== */
+.main-contents {
+    padding: 30px;
+    background-color: #fff;
+}
+
+/* --- タスクの表示 --- */
+.main-contents .task-list table thead tr th {
+    padding: 5px;
+    border-bottom: solid 1px #333;
+}
+
+.main-contents .task-list table tbody tr td:nth-of-type(1) {
+    width: 55%;
+    padding: 5px 10px 5px 0;
+}
+.main-contents .task-list table tbody tr td:nth-of-type(2) {
+    width: 20%;
+    padding: 5px 10px 5px 0;
+    text-align: center;
+}
+.main-contents .task-list table tbody tr td:nth-of-type(3) {
+    width: 15%;
+    padding: 5px 10px 5px 0;
+    text-align: center;
+}
+.main-contents .task-list table tbody tr td:nth-of-type(4) {
+    width: 5%;
+    padding: 5px 20px 5px 0;
+}
+.main-contents .task-list table tbody tr td:nth-of-type(5) {
+    width: 5%;
+}
+
+.main-contents .task-list table tbody tr td .status {
+    margin-right: 20px
+}
