@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface AddRepository extends JpaRepository<Task, Integer> {
+public interface TaskRepository extends JpaRepository<Task, Integer> {
     List<TaskForm> findAllByOrderByUpdatedDateDesc();
 }

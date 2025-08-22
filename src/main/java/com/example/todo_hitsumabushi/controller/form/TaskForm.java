@@ -14,17 +14,20 @@ import java.time.LocalDateTime;
 @Setter
 public class TaskForm {
     private Integer id;
+
     @NotBlank(message = "タスクを入力してください")
     @Size(max = 140, message = "タスクは140文字以内で入力してください")
     private String content;
     private Integer status;
+
     @NotNull(message = "期限を設定してください")
     @FutureOrPresent(message = "無効な日付です")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDateTime limitDate;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime createdDate;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime updatedDate;
-
 }

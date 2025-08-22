@@ -96,7 +96,7 @@
                             </td>
 
                             <!-- タスク期限 -->
-                            <td th:text="${#dates.format(task.limitDate, 'yyyy-MM-dd')}"></td>
+                            <td th:text="${#temporals.format(task.limitDate, 'yyyy-MM-dd')}"></td>
 
                             <!-- 編集ボタン -->
                             <td>

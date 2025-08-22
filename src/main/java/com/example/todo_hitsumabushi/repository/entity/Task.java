@@ -15,15 +15,24 @@ import java.time.LocalDateTime;
 @Setter
 public class Task {
     @Id
+    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(nullable = false)
     private String content;
+
+    @Column
     private Integer status;
+
+    @Column
     private LocalDateTime limitDate;
+
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdDate;
+
+    @Column
     @UpdateTimestamp
     private LocalDateTime updatedDate;
 }

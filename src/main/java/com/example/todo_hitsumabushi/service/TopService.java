@@ -1,10 +1,10 @@
 package com.example.todo_hitsumabushi.service;
 
-import com.example.todo_hitsumabushi.controller.Form.TasksForm;
-import com.example.todo_hitsumabushi.repository.Entity.Tasks;
-import com.example.todo_hitsumabushi.repository.TopRepository;
+import com.example.todo_hitsumabushi.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.example.todo_hitsumabushi.controller.form.TaskForm;
+import com.example.todo_hitsumabushi.repository.entity.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,23 +13,23 @@ import java.util.List;
 public class TopService {
 
     @Autowired
-    TopRepository topRepository;
+    TaskRepository taskRepository;
 
     // tasksテーブルから全レコードを取得
-    public List<TasksForm> findAllTasks() {
-        List<Tasks> results = topRepository.findAll();
-        List<TasksForm> taskList = setTasksForm(results);
+    public List<TaskForm> findAllTasks() {
+        List<Task> results = taskRepository.findAll();
+        List<TaskForm> taskList = setTasksForm(results);
         return taskList;
     }
     /*
      * DBから取得したデータをFormに設定
      */
-    private List<TasksForm> setTasksForm(List<Tasks> results) {
-        List<TasksForm> tasks = new ArrayList<>();
+    private List<TaskForm> setTasksForm(List<Task> results) {
+        List<TaskForm> tasks = new ArrayList<>();
 
         for (int i = 0; i < results.size(); i++) {
-            TasksForm task = new TasksForm();
-            Tasks result = results.get(i);
+            TaskForm task = new TaskForm();
+            Task result = results.get(i);
             task.setId(result.getId());
             task.setContent(result.getContent());
             task.setStatus(result.getStatus());
