@@ -82,7 +82,7 @@
 
                             <!-- ステータス -->
                             <td>
-                                <form>
+                                <form th:action="@{/change/{id}(id=${task.id})}" th:method="put">
                                     <input type="hidden" name="id"/>
                                     <select class="status" name="status">
                                         <option value="1" th:selected="${task.status == 1}">未着手</option>

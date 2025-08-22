@@ -62,4 +62,13 @@ public class AddService {
     public void deleteTask(Integer id) {
         taskRepository.deleteById(id);
     }
+
+    public Task findTaskEntityById(Integer id) {
+        return taskRepository.findById(id).orElse(null);
+    }
+
+    public void saveTaskStatus(Task task) {
+        task.setStatus(task.getStatus());
+        taskRepository.save(task);
+    }
 }

@@ -34,7 +34,7 @@ public class AddController {
     public ModelAndView addTask(@ModelAttribute("taskForm") @Validated TaskForm taskform, BindingResult result){
         System.out.println(taskform.getContent());
         if(result.hasErrors()){
-            ModelAndView mav = new ModelAndView("/top");
+            ModelAndView mav = new ModelAndView("/new");
             mav.addObject("taskList", addService.findAlltask());
             return mav;
         }
@@ -42,10 +42,19 @@ public class AddController {
         return new ModelAndView("redirect:/");
     }
 
-    //タスク削除
+    //タスク削除(削除ボタン押下後の処理)
     @DeleteMapping("/delete/{id}")
     public ModelAndView deleteTask(@PathVariable Integer id){
         addService.deleteTask(id);
+        return new ModelAndView("redirect:/");
+    }
+
+    //ステータス変更処理(変更ボタン押下後の処理)
+    @PutMapping("/change/{id}")
+    public ModelAndView changeTask(@PathVariable Integer id, @ModelAttribute("taskForm") TaskForm taskForm){
+        Task exsitingTask = addService.findTaskEntityById(id);
+        exsitingTask.setStatus(taskForm.getStatus());
+        addService.saveTaskStatus(exsitingTask);
         return new ModelAndView("redirect:/");
     }
 }
