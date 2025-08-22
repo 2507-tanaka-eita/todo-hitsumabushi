@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html lang="ja" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <link th:href="@{/css/style.css}" rel="styleSheet">
+
+        <title>TOP</title>
+    </head>
+
+    <body>
+        <div class="header-contents">
+            <h1>ToDo</h1>
+
+            <!-- 本日の日付を表示 -->
+            <div class="today-date">
+                <p>本日の日付：<span th:text="${#dates.format(#dates.createNow(), 'yyyy/MM/dd')}"></span></p>
+            </div>
+
+            <!-- タスクを追加するボタン -->
+            <div class="btn-newtask">
+                <a th:href="@{/add}">
+                    <input type="button" value="新規タスク">
+                </a>
+            </div>
+
+            <!-- 絞り込み機能 -->
+            <div class="filter-wrap">
+                <form>
+                    <!-- 期限で絞り込み -->
+                    <div class="filter-limit">
+                        <label>期限：</label>
+                        <input type="date" name="startDate">
+                        <span>～</span>
+                        <input type="date" name="endDate">
+                    </div>
+
+                    <!-- ステータスで絞り込み -->
+                    <div class="filter-status">
+                        <label>ステータス：</label>
+                        <select name="status">
+                            <option value="1">未着手</option>
+                            <option value="2">実行中</option>
+                            <option value="3">ステイ中</option>
+                            <option value="4">完了</option>
+                        </select>
+                    </div>
+
+                    <!-- タスク内容で絞り込み -->
+                    <div class="filter-content">
+                        <label>タスク内容：</label>
+                        <input type="text" name="searchword"/>
+                    </div>
+
+                    <!-- 絞り込みボタン -->
+                    <div class="filter-btn">
+                        <button type="submit">絞り込み</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="main-contents">
+            <!-- タスクの表示 -->
+            <div class="task-list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>タスク内容</th>
+                            <th>ステータス</th>
+                            <th>タスク期限</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr th:each="task : ${tasks}">
+
+                            <!-- タスク内容 -->
+                            <td th:text="${task.content}"></td>
+
+                            <!-- ステータス -->
+                            <td>
+                                <form>
+                                    <input type="hidden" name="id"/>
+                                    <select class="status" name="status">
+                                        <option value="1" th:selected="${task.status == 1}">未着手</option>
+                                        <option value="2" th:selected="${task.status == 2}">実行中</option>
+                                        <option value="3" th:selected="${task.status == 3}">ステイ中</option>
+                                        <option value="4" th:selected="${task.status == 4}">完了</option>
+                                    </select>
+
+                                    <button type="submit">変更</button>
+                                </form>
+                            </td>
+
+                            <!-- タスク期限 -->
+                            <td th:text="${#dates.format(task.limitDate, 'yyyy-MM-dd')}"></td>
+
+                            <!-- 編集ボタン -->
+                            <td>
+                                <a th:href="@{/edit/{id}(id=${task.id})}">
+                                    <input type="button" value="編集">
+                                </a>
+                            </td>
+
+                            <!-- 削除ボタン -->
+                            <td>
+                                <form th:action="@{/delete/{id}(id=${task.id})}">
+                                    <input type="submit" value="削除">
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
