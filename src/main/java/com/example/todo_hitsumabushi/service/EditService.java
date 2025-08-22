@@ -24,6 +24,26 @@ public class EditService {
         return reports.get(0);
     }
 
+    // 編集したタスクの更新
+    public void saveTask(TaskForm reqTask) {
+        Task saveReport = setReportEntity(reqTask);
+        taskRepository.save(saveReport);
+    }
+
+    // Form→Entityの詰め替え作業
+    private Task setReportEntity(TaskForm reqTask) {
+        Task task = new Task();
+
+        // データセット。
+        task.setId(reqTask.getId());
+        task.setContent(reqTask.getContent());
+        task.setStatus(reqTask.getStatus());
+        task.setLimitDate(reqTask.getLimitDate());
+        task.setCreatedDate(reqTask.getCreatedDate());
+        task.setUpdatedDate(reqTask.getUpdatedDate());
+        return task;
+    }
+
     // 取得したレコードをEntity→Formへ詰め替え
     private List<TaskForm> setTaskForm(List<Task> results) {
         List<TaskForm> tasks = new ArrayList<>();

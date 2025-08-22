@@ -16,8 +16,6 @@ public class EditController {
 
     @Autowired
     EditService editService;
-    @Autowired
-    AddService addService;
 
     // タスク編集画面の表示
     @GetMapping("/edit/{id}")
@@ -46,7 +44,7 @@ public class EditController {
         }
 
         task.setId(id);
-        addService.saveTask(task);
+        editService.saveTask(task);
         return new ModelAndView("redirect:/");
     }
 }

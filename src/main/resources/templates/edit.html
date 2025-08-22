@@ -32,7 +32,7 @@
                 <div th:if="${#fields.hasErrors('content')}" style="color:red;">
                     <p th:errors="*{content}"></p>
                 </div>
-
+                <input type="hidden" th:field="*{status}" />
                 <input type="submit" value="更新" />
             </form>
         </div>
