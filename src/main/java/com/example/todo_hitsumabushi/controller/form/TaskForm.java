@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -23,7 +24,7 @@ public class TaskForm {
     @NotNull(message = "期限を設定してください")
     @FutureOrPresent(message = "無効な日付です")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDateTime limitDate;
+    private LocalDate limitDate;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime createdDate;

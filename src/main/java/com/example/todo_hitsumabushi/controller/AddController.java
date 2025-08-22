@@ -35,7 +35,7 @@ public class AddController {
         System.out.println(taskform.getContent());
         if(result.hasErrors()){
             ModelAndView mav = new ModelAndView("/top");
-            mav.addObject("taskList", addService.findAllcontent());
+            mav.addObject("taskList", addService.findAlltask());
             return mav;
         }
         addService.saveTask(taskform);

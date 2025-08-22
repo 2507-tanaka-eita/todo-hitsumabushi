@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,25 +19,46 @@ public class AddService {
     //タスク追加
     @Transactional
     public void saveTask(TaskForm reqTask){
-        Task saveTask = setTaskEntity(reqTask);
-        System.out.println(saveTask.getContent());
-        taskRepository.save(saveTask);
+        Task entity = toTaskEntity(reqTask);
+        Task save = taskRepository.save(entity);
+        System.out.println(reqTask.getContent());
     }
 
-    private Task setTaskEntity(TaskForm form){
+    //Entityへ詰める
+    private Task toTaskEntity(TaskForm taskForm){
         Task task = new Task();
-        task.setContent(form.getContent());
-        task.setLimitDate(form.getLimitDate());
+        task.setContent(taskForm.getContent());
+        task.setLimitDate(taskForm.getLimitDate());
         task.setStatus(1);
-        task.setCreatedDate(LocalDateTime.now());
-        task.setUpdatedDate(LocalDateTime.now());
         return task;
     }
 
-    public List<Task> findAllcontent() {
-        return taskRepository.findAllByOrderByUpdatedDateDesc();
+    //情報を取得
+    public List<TaskForm> findAlltask() {
+        List<Task> results = taskRepository.findAllByOrderByUpdatedDateDesc();
+        return setTaskForm(results);
     }
 
+    //Entityの情報をFormへ詰め替える
+    private List<TaskForm> setTaskForm(List<Task> results){
+        List<TaskForm> tasks = new ArrayList<>();
+        //DBから取り出したCommentのリストを一件ずつ取り出して処理する
+        for (Task result : results) {
+            //ここでcommentを使うのは、全投稿を表すものとしてcommentsを使い、一件ずつ読み取る処理の中ではcommentを使いたいから
+            TaskForm task = new TaskForm();
+            //ここでEntityの全情報をFormに詰め替える
+            task.setId(result.getId());
+            task.setContent(result.getContent());
+            task.setLimitDate(result.getLimitDate());
+            task.setCreatedDate(result.getCreatedDate());
+            task.setUpdatedDate(result.getUpdatedDate());
+            tasks.add(task);
+        }
+        return tasks;
+    }
+
+    //データの削除
+    @Transactional
     public void deleteTask(Integer id) {
         taskRepository.deleteById(id);
     }

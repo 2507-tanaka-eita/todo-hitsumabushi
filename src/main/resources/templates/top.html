@@ -107,7 +107,8 @@
 
                             <!-- 削除ボタン -->
                             <td>
-                                <form th:action="@{/delete/{id}(id=${task.id})}">
+                                <form th:action="@{/delete/{id}(id=${task.id})}" th:method="post">
+                                    <input type="hidden" name="_method" value="delete"/>
                                     <input type="submit" value="削除">
                                 </form>
                             </td>
