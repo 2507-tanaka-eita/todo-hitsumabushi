@@ -19,12 +19,12 @@ public class AddService {
     @Transactional
     public void saveTask(TaskForm reqTask){
         Task saveTask = setTaskEntity(reqTask);
-        System.out.println(saveTask.getContent());
         taskRepository.save(saveTask);
     }
 
     private Task setTaskEntity(TaskForm form){
         Task task = new Task();
+        task.setId(form.getId());
         task.setContent(form.getContent());
         task.setLimitDate(form.getLimitDate());
         task.setStatus(1);

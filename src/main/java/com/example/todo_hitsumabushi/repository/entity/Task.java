@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -26,7 +27,7 @@ public class Task {
     private Integer status;
 
     @Column
-    private LocalDateTime limitDate;
+    private LocalDate limitDate;
 
     @CreationTimestamp
     @Column(updatable = false)

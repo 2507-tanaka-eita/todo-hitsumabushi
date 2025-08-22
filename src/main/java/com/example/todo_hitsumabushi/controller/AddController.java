@@ -32,7 +32,6 @@ public class AddController {
     //タスク追加(追加ボタン押下後)
     @PostMapping("/add")
     public ModelAndView addTask(@ModelAttribute("taskForm") @Validated TaskForm taskform, BindingResult result){
-        System.out.println(taskform.getContent());
         if(result.hasErrors()){
             ModelAndView mav = new ModelAndView("/top");
             mav.addObject("taskList", addService.findAllcontent());
