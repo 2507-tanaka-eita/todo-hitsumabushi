@@ -11,12 +11,15 @@
 <div class="main-contents">
     <form method="post" action="/add" th:object="${taskForm}">
         <div class="form-area">
-            <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}" style="color: red"></span>
-            <label>タスク内容</label>
+            <label>タスク内容</label><br>
             <textarea class="tweet-box" th:field="*{content}" size="20" maxlength="200"></textarea><br/>
+            <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}" style="color: red"></span>
+        </div>
+        <div class="task-date">
             <label>タスク期限</label>
-            <div class="content-date" style="font-size: small; color: gray;">
-                <span th:text="${task.createdDate != null} ? ${#temporals.format(task.createdDate, 'yyyy/MM/dd')} : ''"></span>
+            <div class="content-date">
+                <input type="date" th:field="*{limitDate}">
+                <span th:text="${taskForm.limitDate != null} ? ${#temporals.format(taskForm.limitDate, 'yyyy/MM/dd')} : ''"></span>
             </div>
             <input type="submit" value="追加" />
         </div>

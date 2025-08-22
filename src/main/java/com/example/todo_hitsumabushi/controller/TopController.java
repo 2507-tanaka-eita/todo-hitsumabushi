@@ -23,6 +23,7 @@ public class TopController {
         List<TaskForm> taskList = topService.findAllTasks();
 
         mav.addObject("tasks", taskList);
+        mav.addObject("taskForm", taskList);
         mav.setViewName("/top");
         return mav;
     }
