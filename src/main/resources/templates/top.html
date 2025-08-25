@@ -80,11 +80,11 @@
                         <tr th:each="task : ${tasks}">
 
                             <!-- タスク内容 -->
-                            <td th:text="${task.content}"></td>
+                            <td class="task-content" th:text="${task.content}"></td>
 
                             <!-- ステータス -->
                             <td>
-                                <form th:action="@{/change/{id}(id=${task.id})}" th:method="put">
+                                <form th:action="@{/change/{id}(id=${task.id})}" th:method="put" onsubmit="return confirmChange();">
                                     <input type="hidden" name="id"/>
                                     <select class="status" name="status">
                                         <option value="1" th:selected="${task.status == 1}">未着手</option>
@@ -111,7 +111,7 @@
 
                             <!-- 削除ボタン -->
                             <td>
-                                <form th:action="@{/delete/{id}(id=${task.id})}" th:method="post">
+                                <form th:action="@{/delete/{id}(id=${task.id})}" th:method="post" onsubmit="return confirmDelete();">
                                     <input type="hidden" name="_method" value="delete"/>
                                     <input type="submit" value="削除">
                                 </form>
@@ -121,5 +121,15 @@
                 </table>
             </div>
         </div>
+
+        <script>
+            function confirmDelete() {
+                return confirm("タスクを削除しますか？");
+            }
+
+            function confirmChange() {
+                return confirm("ステータスを変更しますか？");
+            }
+        </script>
     </body>
 </html>

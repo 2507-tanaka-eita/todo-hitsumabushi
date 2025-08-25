@@ -105,6 +105,11 @@ TOP画面
     background-color: red;
 }
 
+.main-contents .task-list table tbody tr .task-content {
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
 .main-contents .task-list table tbody tr td .status {
     margin-right: 20px;
 }

@@ -1,7 +1,7 @@
 package com.example.todo_hitsumabushi.controller.form;
 
+import com.example.todo_hitsumabushi.validation.NotOnlyWhitespace;
 import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class TaskForm {
     private Integer id;
 
-    @NotBlank(message = "タスクを入力してください")
+    @NotOnlyWhitespace(message = "タスクを入力してください")
     @Size(max = 140, message = "タスクは140文字以内で入力してください")
     private String content;
 
