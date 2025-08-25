@@ -1,14 +1,15 @@
 package com.example.todo_hitsumabushi.controller;
 
 import com.example.todo_hitsumabushi.controller.form.FilterForm;
+import com.example.todo_hitsumabushi.controller.form.TaskForm;
 import com.example.todo_hitsumabushi.service.dto.FilterDto;
 import com.example.todo_hitsumabushi.service.TopService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
-import com.example.todo_hitsumabushi.controller.form.TaskForm;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -21,7 +22,7 @@ public class TopController {
     TopService topService;
 
     @GetMapping("/")
-    public ModelAndView top(@ModelAttribute("filterForm") FilterForm filterForm) {
+    public ModelAndView top(@ModelAttribute("filterForm") FilterForm filterForm, HttpSession session) {
         ModelAndView mav = new ModelAndView();
 
         // 絞り込み機能(日付、ステータス、タスク内容)

@@ -1,13 +1,13 @@
 package com.example.todo_hitsumabushi.service;
 
+import com.example.todo_hitsumabushi.controller.form.TaskForm;
 import com.example.todo_hitsumabushi.repository.TaskRepository;
+import com.example.todo_hitsumabushi.repository.entity.Task;
 import com.example.todo_hitsumabushi.service.dto.FilterDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import com.example.todo_hitsumabushi.controller.form.TaskForm;
-import com.example.todo_hitsumabushi.repository.entity.Task;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

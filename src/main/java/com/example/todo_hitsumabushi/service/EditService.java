@@ -1,11 +1,10 @@
 package com.example.todo_hitsumabushi.service;
 
+import com.example.todo_hitsumabushi.controller.form.TaskForm;
 import com.example.todo_hitsumabushi.repository.TaskRepository;
+import com.example.todo_hitsumabushi.repository.entity.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.example.todo_hitsumabushi.controller.form.TaskForm;
-import com.example.todo_hitsumabushi.repository.entity.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +19,10 @@ public class EditService {
     public TaskForm editTask(Integer id) {
         List<Task> results = new ArrayList<>();
         results.add((Task) taskRepository.findById(id).orElse(null));
+        Task entity = results.get(0);
+        if(entity == null){
+            return null;
+        }
         List<TaskForm> reports = setTaskForm(results);
         return reports.get(0);
     }
@@ -62,5 +65,9 @@ public class EditService {
             tasks.add(task);
         }
         return tasks;
+    }
+
+    public Task findTaskById(Integer id)  {
+        return taskRepository.findById(id).orElse(null);
     }
 }
