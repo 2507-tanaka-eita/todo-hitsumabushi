@@ -14,7 +14,7 @@
 
             <!-- 本日の日付を表示 -->
             <div class="today-date">
-                <p>本日の日付：<span th:text="${#dates.format(#dates.createNow(), 'yyyy/MM/dd')}"></span></p>
+                <p>本日の日付：<span th:text="${#temporals.format(T(java.time.LocalDate).now(), 'yyyy/MM/dd')}"></span></p>
             </div>
 
             <!-- タスクを追加するボタン -->
@@ -26,19 +26,20 @@
 
             <!-- 絞り込み機能 -->
             <div class="filter-wrap">
-                <form>
+                <form th:method="get" action="./" th:object="${filterForm}">
                     <!-- 期限で絞り込み -->
                     <div class="filter-limit">
                         <label>期限：</label>
-                        <input type="date" name="startDate">
+                        <input type="date" name="startDate" th:field="*{startDate}">
                         <span>～</span>
-                        <input type="date" name="endDate">
+                        <input type="date" name="endDate" th:field="*{endDate}">
                     </div>
 
                     <!-- ステータスで絞り込み -->
                     <div class="filter-status">
                         <label>ステータス：</label>
-                        <select name="status">
+                        <select name="status" th:field="*{status}">
+                            <option value="0">選択しない</option>
                             <option value="1">未着手</option>
                             <option value="2">実行中</option>
                             <option value="3">ステイ中</option>
@@ -49,7 +50,7 @@
                     <!-- タスク内容で絞り込み -->
                     <div class="filter-content">
                         <label>タスク内容：</label>
-                        <input type="text" name="searchword"/>
+                        <input type="text" name="searchword" th:field="*{searchword}"/>
                     </div>
 
                     <!-- 絞り込みボタン -->
@@ -96,7 +97,9 @@
                             </td>
 
                             <!-- タスク期限 -->
-                            <td th:text="${#temporals.format(task.limitDate, 'yyyy-MM-dd')}"></td>
+                            <td th:class="${task.limitDate.isAfter(T(java.time.LocalDate).now())} ? 'limit-future' : 'limit-past'">
+                                <span th:text="${#temporals.format(task.limitDate, 'yyyy-MM-dd')}">></span>
+                            </td>
 
                             <!-- 編集ボタン -->
                             <td>

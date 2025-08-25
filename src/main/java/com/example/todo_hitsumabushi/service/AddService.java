@@ -7,7 +7,6 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class AddService {
     private Task toTaskEntity(TaskForm taskForm){
         Task task = new Task();
         task.setContent(taskForm.getContent());
-        task.setLimitDate(taskForm.getLimitDate());
+        task.setLimitDate(taskForm.getLimitDate().atStartOfDay());
         task.setStatus(1);
         return task;
     }
@@ -49,7 +48,7 @@ public class AddService {
             //ここでEntityの全情報をFormに詰め替える
             task.setId(result.getId());
             task.setContent(result.getContent());
-            task.setLimitDate(result.getLimitDate());
+            task.setLimitDate(result.getLimitDate().toLocalDate());
             task.setCreatedDate(result.getCreatedDate());
             task.setUpdatedDate(result.getUpdatedDate());
             tasks.add(task);

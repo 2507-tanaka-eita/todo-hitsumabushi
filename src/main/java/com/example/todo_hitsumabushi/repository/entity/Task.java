@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -27,7 +26,7 @@ public class Task {
     private Integer status;
 
     @Column
-    private LocalDate limitDate;
+    private LocalDateTime limitDate;
 
     @CreationTimestamp
     @Column(updatable = false)

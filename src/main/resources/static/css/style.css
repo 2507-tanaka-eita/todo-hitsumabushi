@@ -98,6 +98,13 @@ TOP画面
     width: 5%;
 }
 
+.main-contents .task-list table tbody tr .limit-future span {
+    background-color: yellow;
+}
+.main-contents .task-list table tbody tr .limit-past span {
+    background-color: red;
+}
+
 .main-contents .task-list table tbody tr td .status {
     margin-right: 20px
 }

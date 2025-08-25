@@ -38,7 +38,7 @@ public class EditService {
         task.setId(reqTask.getId());
         task.setContent(reqTask.getContent());
         task.setStatus(reqTask.getStatus());
-        task.setLimitDate(reqTask.getLimitDate());
+        task.setLimitDate(reqTask.getLimitDate().atStartOfDay());
         task.setCreatedDate(reqTask.getCreatedDate());
         task.setUpdatedDate(reqTask.getUpdatedDate());
         return task;
@@ -56,7 +56,7 @@ public class EditService {
             task.setId(result.getId());
             task.setContent(result.getContent());
             task.setStatus(result.getStatus());
-            task.setLimitDate(result.getLimitDate());
+            task.setLimitDate(result.getLimitDate().toLocalDate());
             task.setCreatedDate(result.getCreatedDate());
             task.setUpdatedDate(result.getUpdatedDate());
             tasks.add(task);
