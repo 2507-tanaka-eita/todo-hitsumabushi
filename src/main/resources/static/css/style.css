@@ -106,5 +106,12 @@ TOP画面
 }
 
 .main-contents .task-list table tbody tr td .status {
-    margin-right: 20px
+    margin-right: 20px;
+}
+
+/* ---------------
+編集画面
+--------------- */
+.main-contents form .form-area .tweet-box {
+    width: 500px;
 }

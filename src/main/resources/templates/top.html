@@ -12,6 +12,7 @@
         <div class="header-contents">
             <h1>ToDo</h1>
 
+            <div th:if="${errorCode}" style="color:red;" th:text="${errorCode}"></div>
             <!-- 本日の日付を表示 -->
             <div class="today-date">
                 <p>本日の日付：<span th:text="${#temporals.format(T(java.time.LocalDate).now(), 'yyyy/MM/dd')}"></span></p>

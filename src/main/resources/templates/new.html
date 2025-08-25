@@ -14,14 +14,16 @@
             <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}" style="color: red"></span><br>
             <span th:if="${#fields.hasErrors('limitDate')}" th:errors="*{limitDate}" style="color: red"></span><br>
             <label>タスク内容</label><br>
-            <textarea class="tweet-box" th:field="*{content}" size="20" maxlength="200"></textarea><br/>
+            <textarea rows="5" class="tweet-box" th:field="*{content}" size="20" maxlength="200"></textarea><br/>
         </div>
+        <br>
         <div class="task-date">
             <label>タスク期限</label>
             <div class="content-date">
                 <input type="date" th:field="*{limitDate}">
                 <span th:text="${taskForm.limitDate != null} ? ${#temporals.format(taskForm.limitDate, 'yyyy/MM/dd')} : ''"></span>
             </div>
+            <br>
             <input type="submit" value="追加" />
         </div>
     </form>

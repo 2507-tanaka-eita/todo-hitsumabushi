@@ -1,45 +1,47 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta charset="UTF-8">
-        <link th:href="@{/css/style.css}" rel="styleSheet">
-        <title>タスク編集</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/style.css}" rel="styleSheet">
+    <title>タスク編集</title>
+</head>
 
-    <body>
-        <div class="header-contents">
-            <h2>タスク編集</h2>
+<body>
+<div class="header-contents">
+    <h2>タスク編集</h2>
+</div>
+
+<div class="main-contents">
+    <form th:method="put" th:action="@{/update/{id}(id=${taskForm.id})}" th:object="${taskForm}">
+        <div class="form-area">
+            <!-- エラーメッセージ表示 -->
+            <div th:if="${#fields.hasErrors('content')}" style="color:red;">
+                <p th:errors="*{content}"></p>
+                <span th:if="${#fields.hasErrors('limitDate')}" th:errors="*{limitDate}" style="color: red"></span><br>
+            </div>
+            <label>タスク内容</label><br>
+            <textarea rows="5" class="tweet-box" th:field="*{content}" size="20" maxlength="200"></textarea><br/>
+            <br>
         </div>
 
-        <div class="main-contents">
-            <form th:method="put" th:action="@{/update/{id}(id=${taskForm.id})}" th:object="${taskForm}">
-                <div class="form-area">
-                    <label>タスク内容</label><br>
-                    <textarea class="tweet-box" th:field="*{content}" size="20" maxlength="200"></textarea><br/>
-                </div>
-
-                <div class="task-date">
-                    <label>タスク期限</label>
-                    <div class="content-date">
-                        <input type="date" th:field="*{limitDate}">
-                        <span th:text="${taskForm.limitDate != null} ? ${#temporals.format(taskForm.limitDate, 'yyyy/MM/dd')} : ''"></span>
-                    </div>
-                </div>
-
-                <!-- エラーメッセージ表示 -->
-                <div th:if="${#fields.hasErrors('content')}" style="color:red;">
-                    <p th:errors="*{content}"></p>
-                </div>
-                <input type="hidden" th:field="*{status}" />
-                <input type="submit" value="更新" />
-            </form>
+        <div class="task-date">
+            <label>タスク期限</label>
+            <div class="content-date">
+                <input type="date" th:field="*{limitDate}">
+                <span th:text="${taskForm.limitDate != null} ? ${#temporals.format(taskForm.limitDate, 'yyyy/MM/dd')} : ''"></span>
+            </div>
         </div>
+        <br>
+        <input type="hidden" th:field="*{status}" />
+        <input type="submit" value="更新" />
+    </form>
+</div>
 
-        <div class="footer-contents">
-            <form action="/">
-                <input type="submit" value="戻る" />
-            </form>
-        </div>
-    </body>
+<div class="footer-contents">
+    <form action="/">
+        <input type="submit" value="戻る" />
+    </form>
+</div>
+</body>
 </html>
