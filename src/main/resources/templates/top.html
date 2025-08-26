@@ -93,7 +93,7 @@
                                         <option value="4" th:selected="${task.status == 4}">完了</option>
                                     </select>
 
-                                    <button type="submit">変更</button>
+                                    <button class="button-change" type="submit">変更</button>
                                 </form>
                             </td>
 
@@ -105,7 +105,7 @@
                             <!-- 編集ボタン -->
                             <td>
                                 <a th:href="@{/edit/{id}(id=${task.id})}">
-                                    <input type="button" value="編集">
+                                    <input class="button-edit" type="button" value="編集">
                                 </a>
                             </td>
 
@@ -113,7 +113,7 @@
                             <td>
                                 <form th:action="@{/delete/{id}(id=${task.id})}" th:method="post" onsubmit="return confirmDelete();">
                                     <input type="hidden" name="_method" value="delete"/>
-                                    <input type="submit" value="削除">
+                                    <input class="button-delete" type="submit" value="削除">
                                 </form>
                             </td>
                         </tr>

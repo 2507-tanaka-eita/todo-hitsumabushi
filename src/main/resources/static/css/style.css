@@ -43,6 +43,10 @@ TOP画面
     margin-bottom: 20px;
 }
 
+.header-contents .btn-newtask a input:hover {
+    cursor: pointer;
+}
+
 /* --- 絞り込み機能 --- */
 .header-contents .filter-wrap form {
     display: flex;
@@ -50,6 +54,10 @@ TOP画面
 
 .header-contents .filter-wrap .filter-limit {
     margin-right: 25px;
+}
+
+.header-contents .filter-wrap .filter-limit input:hover {
+    cursor: pointer;
 }
 
 .header-contents .filter-wrap .filter-limit span {
@@ -60,8 +68,16 @@ TOP画面
     margin-right: 25px;
 }
 
+.header-contents .filter-wrap .filter-status select:hover {
+    cursor: pointer;
+}
+
 .header-contents .filter-wrap .filter-content {
     margin-right: 25px;
+}
+
+.header-contents .filter-wrap .filter-btn button:hover {
+    cursor: pointer;
 }
 
 /* ===== main-contents ===== */
@@ -111,7 +127,13 @@ TOP画面
 }
 
 .main-contents .task-list table tbody tr td .status {
+    border-radius: 20px;
+    padding: 5px;
     margin-right: 20px;
+}
+
+.main-contents .task-list table tbody tr td .status:hover {
+    cursor: pointer;
 }
 
 /* ---------------
@@ -119,4 +141,67 @@ TOP画面
 --------------- */
 .main-contents form .form-area .tweet-box {
     width: 500px;
+}
+
+/*編集ボタン*/
+.main-contents .task-list table tbody tr td a .button-edit {
+      background-color: #fff;
+      border: solid 2px #a9a9a9;
+      color: #000000;
+      border-radius: 20px;
+      padding: 5px 12px;
+      text-decoration: none;
+      font-size: 14px;
+      box-shadow: 0 5px 0 #a9a9a9;
+      display: inline-block;
+      transition: .3s;
+}
+
+.main-contents .task-list table tbody tr td a .button-edit:hover {
+      color: #a9a9a9;
+      transform: translateY(5px);
+      box-shadow: 0 0 0 #a9a9a9;
+      cursor: pointer;
+}
+
+/*削除ボタン*/
+.main-contents .task-list table tbody tr td form .button-delete {
+      background-color: #fff;
+      border: solid 2px #a9a9a9;
+      color: #000000;
+      border-radius: 20px;
+      padding: 5px 12px;
+      text-decoration: none;
+      font-size: 14px;
+      box-shadow: 0 5px 0 #a9a9a9;
+      display: inline-block;
+      transition: .3s;
+}
+
+.main-contents .task-list table tbody tr td form .button-delete:hover {
+      color: #a9a9a9;
+      transform: translateY(5px);
+      box-shadow: 0 0 0 #a9a9a9;
+      cursor: pointer;
+}
+
+/*変更ボタン*/
+.main-contents .task-list table tbody tr td form .button-change {
+      background-color: #fff;
+      border: solid 2px #a9a9a9;
+      color: #000000;
+      border-radius: 20px;
+      padding: 5px 12px;
+      text-decoration: none;
+      font-size: 14px;
+      box-shadow: 0 5px 0 #a9a9a9;
+      display: inline-block;
+      transition: .3s;
+}
+
+.main-contents .task-list table tbody tr td form .button-change:hover {
+      color: #a9a9a9;
+      transform: translateY(5px);
+      box-shadow: 0 0 0 #a9a9a9;
+      cursor: pointer;
 }
