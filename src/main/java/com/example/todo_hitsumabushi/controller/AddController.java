@@ -29,7 +29,7 @@ public class AddController {
     public ModelAndView addTask(@ModelAttribute("taskForm") @Validated TaskForm taskform, BindingResult result){
         if(result.hasErrors()){
             ModelAndView mav = new ModelAndView("/new");
-            mav.addObject("taskList", addService.findAlltask());
+            mav.addObject("taskList", taskform);
             return mav;
         }
         addService.saveTask(taskform);

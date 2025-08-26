@@ -12,7 +12,6 @@ import java.util.List;
 
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Integer> {
-    List<Task> findAllByOrderByUpdatedDateDesc();
 
     // タスクを取得するSQL文（日付、ステータス、タスク内容の絞り込み機能に対応）
     @Query("SELECT t FROM Task t " +

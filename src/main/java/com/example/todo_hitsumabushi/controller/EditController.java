@@ -24,12 +24,15 @@ public class EditController {
     }
 
     @GetMapping("/edit/{id}")
+    //URLに送られてくる情報は最初は文字列のため、Integerにすると数字以外が来た時にエラーになる
     public ModelAndView editWithId(@PathVariable String id, RedirectAttributes redirectAttributes) {
+        //idが数字以外ならエラー
         if (!id.matches("\\d+")) {
             redirectAttributes.addFlashAttribute("errorCode", "不正なパラメータです");
             return new ModelAndView("redirect:/");
         }
         Integer taskId = Integer.valueOf(id);
+        //タスクIdが存在しない場合エラーに
         if (editService.editTask(taskId) == null) {
             redirectAttributes.addFlashAttribute("errorCode", "不正なパラメータです");
             return new ModelAndView("redirect:/");

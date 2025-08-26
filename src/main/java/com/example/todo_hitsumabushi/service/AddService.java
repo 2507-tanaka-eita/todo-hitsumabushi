@@ -20,7 +20,6 @@ public class AddService {
     public void saveTask(TaskForm reqTask){
         Task entity = toTaskEntity(reqTask);
         Task save = taskRepository.save(entity);
-        System.out.println(reqTask.getContent());
     }
 
     //Entityへ詰める
@@ -30,12 +29,6 @@ public class AddService {
         task.setLimitDate(taskForm.getLimitDate().atStartOfDay());
         task.setStatus(1);
         return task;
-    }
-
-    //情報を取得
-    public List<TaskForm> findAlltask() {
-        List<Task> results = taskRepository.findAllByOrderByUpdatedDateDesc();
-        return setTaskForm(results);
     }
 
     //Entityの情報をFormへ詰め替える
