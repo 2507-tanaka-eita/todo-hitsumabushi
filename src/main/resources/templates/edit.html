@@ -17,10 +17,10 @@
         <div class="form-area">
             <!-- エラーメッセージ表示 -->
             <!-- content -->
-            <div th:errors="*{content}" style="color:red"></div>
+            <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" style="color:red"></div>
 
             <!-- limitDate -->
-            <div th:errors="*{limitDate}" style="color:red"></div>
+            <div th:if="${#fields.hasErrors('limitDate')}" th:errors="*{limitDate}" style="color:red"></div>
             <label>タスク内容</label><br>
             <textarea rows="5" class="tweet-box" th:field="*{content}" size="20" maxlength="200"></textarea><br/>
             <br>
