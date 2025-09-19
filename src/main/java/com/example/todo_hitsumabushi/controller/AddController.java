@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class AddController {
@@ -26,11 +27,10 @@ public class AddController {
 
     //タスク追加(追加ボタン押下後)
     @PostMapping("/add")
-    public ModelAndView addTask(@ModelAttribute("taskForm") @Validated TaskForm taskform, BindingResult result){
+    public ModelAndView addTask(@ModelAttribute("taskForm") @Validated TaskForm taskform, BindingResult result,
+                                RedirectAttributes redirectAttributes){
         if(result.hasErrors()){
-            ModelAndView mav = new ModelAndView("/new");
-            mav.addObject("taskForm", taskform);
-            return mav;
+            return new ModelAndView("redirect:/new");
         }
         addService.saveTask(taskform);
         return new ModelAndView("redirect:/");

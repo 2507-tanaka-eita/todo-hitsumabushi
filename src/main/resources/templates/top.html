@@ -24,6 +24,7 @@
                     <input type="button" value="新規タスク">
                 </a>
             </div>
+            <br>
 
             <!-- 絞り込み機能 -->
             <div class="filter-wrap">
@@ -99,7 +100,7 @@
 
                             <!-- タスク期限 -->
                             <td th:class="${task.limitDate.isAfter(T(java.time.LocalDate).now())} ? 'limit-future' : 'limit-past'">
-                                <span th:text="${#temporals.format(task.limitDate, 'yyyy-MM-dd')}">></span>
+                                <span th:text="${#temporals.format(task.limitDate, 'yyyy/MM/dd')}">></span>
                             </td>
 
                             <!-- 編集ボタン -->

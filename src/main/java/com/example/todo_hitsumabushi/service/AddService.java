@@ -1,6 +1,7 @@
 package com.example.todo_hitsumabushi.service;
 
 import com.example.todo_hitsumabushi.controller.form.TaskForm;
+import com.example.todo_hitsumabushi.mapper.TaskMapper;
 import com.example.todo_hitsumabushi.repository.TaskRepository;
 import com.example.todo_hitsumabushi.repository.entity.Task;
 import jakarta.transaction.Transactional;
@@ -12,14 +13,21 @@ import java.util.List;
 
 @Service
 public class AddService {
+//    @Autowired
+//    TaskRepository taskRepository;
     @Autowired
-    TaskRepository taskRepository;
+    TaskMapper taskMapper;
 
     //タスク追加
     @Transactional
     public void saveTask(TaskForm reqTask){
         Task entity = toTaskEntity(reqTask);
-        Task save = taskRepository.save(entity);
+        if(entity.getId() == null){
+            taskMapper.insertTask(entity);
+        } else {
+            taskMapper.updateTask(entity);
+        }
+//        Task save = taskRepository.save(entity);
     }
 
     //Entityへ詰める
@@ -52,15 +60,21 @@ public class AddService {
     //データの削除
     @Transactional
     public void deleteTask(Integer id) {
-        taskRepository.deleteById(id);
+        taskMapper.deleteById(id);
     }
 
     public Task findTaskEntityById(Integer id) {
-        return taskRepository.findById(id).orElse(null);
+//        return taskRepository.findById(id).orElse(null);
+        return taskMapper.selectById(id);
     }
 
     public void saveTaskStatus(Task task) {
         task.setStatus(task.getStatus());
-        taskRepository.save(task);
+//        taskRepository.save(task);
+        if (task.getStatus() == null) {
+            taskMapper.insertTaskStatus(task);
+        } else {
+            taskMapper.updateTaskStatus(task);
+        }
     }
 }

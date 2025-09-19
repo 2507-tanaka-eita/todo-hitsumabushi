@@ -1,6 +1,7 @@
 package com.example.todo_hitsumabushi.service;
 
 import com.example.todo_hitsumabushi.controller.form.TaskForm;
+import com.example.todo_hitsumabushi.mapper.TaskMapper;
 import com.example.todo_hitsumabushi.repository.TaskRepository;
 import com.example.todo_hitsumabushi.repository.entity.Task;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,17 +13,20 @@ import java.util.List;
 @Service
 public class EditService {
 
+//    @Autowired
+//    TaskRepository taskRepository;
     @Autowired
-    TaskRepository taskRepository;
+    TaskMapper taskMapper;
 
     // タスク編集画面の表示
     public TaskForm editTask(Integer id) {
-        List<Task> results = new ArrayList<>();
-        results.add((Task) taskRepository.findById(id).orElse(null));
-        Task entity = results.get(0);
-        if(entity == null){
+//        results.add((Task) taskRepository.findById(id).orElse(null));
+        Task entity = taskMapper.selectById(id); // Optionalは不要
+        if (entity == null) {
             return null;
         }
+        List<Task> results = new ArrayList<>();
+        results.add(entity);
         List<TaskForm> reports = setTaskForm(results);
         return reports.get(0);
     }
@@ -30,7 +34,14 @@ public class EditService {
     // 編集したタスクの更新
     public void saveTask(TaskForm reqTask) {
         Task saveReport = setReportEntity(reqTask);
-        taskRepository.save(saveReport);
+//        taskRepository.save(saveReport);
+        if (saveReport.getId() == null) {
+            // 新規
+            taskMapper.insertTask(saveReport);
+        } else {
+            // 更新
+            taskMapper.updateTask(saveReport);
+        }
     }
 
     // Form→Entityの詰め替え作業
@@ -65,9 +76,5 @@ public class EditService {
             tasks.add(task);
         }
         return tasks;
-    }
-
-    public Task findTaskById(Integer id)  {
-        return taskRepository.findById(id).orElse(null);
     }
 }
